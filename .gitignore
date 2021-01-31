@@ -1,3 +1,8 @@
+main
+iso20022tocsv
+coverage/
+release/
+
 # Binaries for programs and plugins
 *.exe
 *.exe~

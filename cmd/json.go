@@ -14,8 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-//go:generate go run ../internal/generators/sepatogo/main.go ../assets/xsd cmd
-
 package cmd
 
 import (
@@ -24,13 +22,9 @@ import (
 	"fmt"
 	"io/ioutil"
 
+	camt053v4 "github.com/mgruener/iso20022tocsv/internal/iso20022/camt/053/001/04"
 	"github.com/spf13/cobra"
 )
-
-type Camt053 struct {
-	XMLName       xml.Name                   `xml:"Document"`
-	BkToCstmrStmt BankToCustomerStatementV04 ` xml:"BkToCstmrStmt"`
-}
 
 func newJsonCmd(c *Cli) *cobra.Command {
 	var cmd = &cobra.Command{
@@ -57,7 +51,7 @@ func runJson(c *Cli, cmd *cobra.Command, args []string) error {
 		return fmt.Errorf("There was an error reading the file : %v", err.Error())
 	}
 
-	var doc Camt053
+	var doc camt053v4.Document
 
 	// Get the XML object:
 	err = xml.Unmarshal(fcBy, &doc)

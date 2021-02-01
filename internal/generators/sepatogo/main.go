@@ -19,7 +19,6 @@ func main() {
 	var err error
 
 	path := fmt.Sprintf("%s/*.xsd", os.Args[1])
-	pkg := os.Args[2]
 	files, err = filepath.Glob(path)
 	if err != nil {
 		fmt.Printf("Could not get details of the files - Error:  %v\n", err.Error())
@@ -28,11 +27,11 @@ func main() {
 
 	for _, f := range files {
 		fmt.Printf("Finished: %v \n", f)
-		generateFile(f, pkg)
+		generateFile(f)
 	}
 }
 
-func generateFile(f string, pkg string) {
+func generateFile(f string) {
 
 	var cfg xsdgen.Config
 
@@ -41,14 +40,20 @@ func generateFile(f string, pkg string) {
 
 	// File and folder name:
 	_, fn = path.Split(fn)
-	fn = strings.Replace(fn, ".", "_", -1)
-	fn = strings.TrimRight(fn, "_xsd")
-	pt := fmt.Sprintf("%s.gen.go", fn)
+	parts := strings.Split(fn, ".")
+	file := fmt.Sprintf("%s_%s_%s_%s.gen.go", parts[0], parts[1], parts[2], parts[3])
+	folder := fmt.Sprintf("%s/%s/%s/%s", parts[0], parts[1], parts[2], parts[3])
+	pt := fmt.Sprintf("%s/%s", folder, file)
+
+	err := os.MkdirAll(folder, 0777)
+	if err != nil {
+		fmt.Printf("Failed to create directory '%s': %s", folder, err)
+	}
 
 	cfg.Option(
 		xsdgen.IgnoreAttributes("id", "href", "offset"),
 		xsdgen.IgnoreElements("comment"),
-		xsdgen.PackageName(pkg),
+		xsdgen.PackageName(fmt.Sprintf(fmt.Sprintf("%s_%s_%s_%s", parts[0], parts[1], parts[2], parts[3]))),
 		xsdgen.Replace("_", ""),
 		xsdgen.HandleSOAPArrayType(),
 		xsdgen.SOAPArrayAsSlice(),

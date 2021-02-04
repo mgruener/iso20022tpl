@@ -18,11 +18,9 @@ package cmd
 
 import (
 	"encoding/json"
-	"encoding/xml"
 	"fmt"
-	"io/ioutil"
 
-	camt053v4 "github.com/mgruener/iso20022tocsv/internal/iso20022/camt/053/001/04"
+	"github.com/mgruener/iso20022tocsv/internal/iso20022"
 	"github.com/spf13/cobra"
 )
 
@@ -42,21 +40,9 @@ func newJsonCmd(c *Cli) *cobra.Command {
 func runJson(c *Cli, cmd *cobra.Command, args []string) error {
 	file := args[0]
 
-	var fcBy []byte
-	var err error
-
-	// Open the file and fetch the contents:
-	fcBy, err = ioutil.ReadFile(file)
+	doc, err := iso20022.New(file)
 	if err != nil {
-		return fmt.Errorf("There was an error reading the file : %v", err.Error())
-	}
-
-	var doc camt053v4.Document
-
-	// Get the XML object:
-	err = xml.Unmarshal(fcBy, &doc)
-	if err != nil {
-		return fmt.Errorf("There was an error in parsing the XML : %v", err.Error())
+		return fmt.Errorf("failed to load iso20022 document from '%s': %s", file, err)
 	}
 
 	// JSON format:

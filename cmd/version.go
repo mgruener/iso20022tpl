@@ -22,7 +22,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-const appName = "iso20022tocsv"
+const appName = "iso20022tpl"
 
 // Version is the application version. It will be overriden during the build process.
 // See https://www.digitalocean.com/community/tutorials/using-ldflags-to-set-version-information-for-go-applications

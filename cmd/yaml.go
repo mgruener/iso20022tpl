@@ -21,7 +21,7 @@ import (
 
 	"sigs.k8s.io/yaml"
 
-	"github.com/mgruener/iso20022tocsv/internal/iso20022"
+	"github.com/mgruener/iso20022tpl/internal/iso20022"
 	"github.com/spf13/cobra"
 )
 

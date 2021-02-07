@@ -39,6 +39,7 @@ func NewRootCommand(c *Cli) *cobra.Command {
 	rootCmd.AddCommand(
 		newVersionCmd(),
 		newJsonCmd(c),
+		newYamlCmd(c),
 	)
 
 	return rootCmd

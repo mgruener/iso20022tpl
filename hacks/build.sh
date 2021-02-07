@@ -2,14 +2,14 @@
 
 export GO111MODULE=on
 export CGO_ENABLED=0
-APPNAME="iso20022tocsv"
+APPNAME="iso20022tpl"
 VERSION=${VERSION:-"development"}
 
 echo "Building ${APPNAME}..."
 # Details: https://golang.org/cmd/go/#hdr-Compile_packages_and_dependencies
 GO_BUILD_CMD="go build -a -v -trimpath"
 # Details: https://golang.org/cmd/link/
-GO_BUILD_LDFLAGS="-s -w -X 'github.com/mgruener/iso20022tocsv/cmd.Version=${VERSION}'"
+GO_BUILD_LDFLAGS="-s -w -X 'github.com/mgruener/iso20022tpl/cmd.Version=${VERSION}'"
 
 mkdir -p release
 RELEASEDIR=$(readlink -f release)

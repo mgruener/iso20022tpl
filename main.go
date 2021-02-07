@@ -18,7 +18,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/mgruener/iso20022tocsv/cmd"
+	"github.com/mgruener/iso20022tpl/cmd"
 )
 
 func main() {

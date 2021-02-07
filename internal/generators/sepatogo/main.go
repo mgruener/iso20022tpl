@@ -175,7 +175,7 @@ import (
 	"os"
 
 {{- range .Schemas }}
-	{{ .Pkg }} "github.com/mgruener/iso20022tocsv/internal/iso20022/{{ .Folder }}"
+	{{ .Pkg }} "github.com/mgruener/iso20022tpl/internal/iso20022/{{ .Folder }}"
 {{- end }}
 )
 

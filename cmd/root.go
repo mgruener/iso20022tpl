@@ -23,7 +23,7 @@ import (
 
 func NewRootCommand(c *Cli) *cobra.Command {
 	var rootCmd = &cobra.Command{
-		Use:           "iso20022tocsv",
+		Use:           "iso20022tpl",
 		Short:         "Convert ISO 20022 bank statements to CSV",
 		SilenceUsage:  false,
 		SilenceErrors: true,

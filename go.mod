@@ -1,4 +1,4 @@
-module github.com/mgruener/iso20022tocsv
+module github.com/mgruener/iso20022tpl
 
 go 1.15
 

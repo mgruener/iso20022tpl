@@ -40,6 +40,7 @@ func NewRootCommand(c *Cli) *cobra.Command {
 		newVersionCmd(),
 		newJsonCmd(c),
 		newYamlCmd(c),
+		newTemplateCmd(c),
 	)
 
 	return rootCmd
